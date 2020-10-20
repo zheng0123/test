@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Homework1</title>
+    <style>
+        .div2
+         {
+            position: relative;
+            border:1px solid white;
+            background-color:black;
+            margin:0px auto;
+            width:850px;
+            height: 450px;
+            margin-top:100px;
+         }
+        .div3{
+            position: relative;  
+            width: 567px;
+            height: 15px;
+            border:1px solid black;
+            margin:0px auto;
+            margin-top:80px;
+        }
+        .div4{
+            position: relative;  
+            width: 210px;
+            height: 50px;
+            border:1px solid black;
+            margin:0px auto;
+            margin-top:50px;
+        }
+        .tb1 {
+            border: 1px solid black;
+            width: 63px;    /* 最大值 */
+            height: 170px;   /* 最小值 */
+            background-color:	#7B7B7B;
+            display:inline-block;
+        }
+        td:hover { background-color:#D0D0D0;}
+        .col1{color:white;}
+
+    </style>
+</head>
+<body>  
+    <div id="container"></div>
+    <div class="div2">
+    <div class="div4"><h1 class="col1">九   九   乘   法   表</h1></div>
+    <script>
+        document.write("<div class=div3>");
+        let x, y;
+        for (x = 1; x < 10; x++) {
+            document.write("<table class=tb1><tr><td>") // <td align=center>
+            for (y = 1; y < 10; y++) {
+                document.write(x + "X" + y + "=" + x * y + "</br>")
+            }
+            document.write("</td></tr></table>")  
+        }
+        document.write("</div>");
+    </script>
+    </div>
+</body>
+</html>

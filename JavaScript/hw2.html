@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <title>homework2</title>
+    <style>
+        .leg1 {
+            color: white
+        }
+        .leg2 {
+            color: thistle
+        }
+        .fld1 {
+            position: relative;
+            margin: 30px auto;
+            width: 600px;
+        }
+        .cen1 {
+            text-align: center;
+        }
+        .div2
+         {
+            position: relative;
+            border:1px solid white;
+            background-color:black;
+            margin:0px auto;
+            width:850px;
+            height: 450px;
+            margin-top:100px;
+         }
+        .div5 {
+            position: relative;
+            width: 180px;
+            height: 50px;
+            border: 1px solid black;
+            margin: 0px auto;
+            margin-top: 50px;
+        }
+        .col2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div class="div2">
+        <div class="div5">
+            <h1 class="col2">表 單 製 作</h1>
+        </div>
+        <form method="get">
+            <fieldset class="fld1">
+                <legend class="leg1">Form Check</legend>
+                <div>
+                    <dl>
+                        <dd>
+                            <label class="leg1">姓名:</label>
+                            <input type="text" id="idName" placeholder="請輸入名字" size="20" onblur="checkName()">
+                            <span id="idnm"></span><br />
+                            <script>
+                                function checkName() {
+                                    let theNameObj = document.getElementById("idName");
+                                    let theNameObjVal = theNameObj.value;
+                                    let theNameObjValLen = theNameObjVal.length;
+                                    let flag4 = false;
+                                    if (theNameObjVal == "")
+                                        document.getElementById("idnm").innerHTML = "<img src='no.jpg'>" + "<font color='red'>不能空白</font>"
+                                    else if (theNameObjValLen >= 2) {
+                                        for (let i = 0; i < theNameObjValLen; i++) {
+                                            let ch1 = theNameObjVal.charAt(i);
+                                            if (ch1 >= "\u4E00" && ch1 <= "\u9FFF")
+                                                flag4 = true;
+                                            break;
+                                        }
+                                        if (flag4)
+                                            document.getElementById("idnm").innerHTML = "<img src='yes.jpg'>" + "<font color='#BBFFBB'>正確</font>"
+                                        else
+                                            document.getElementById("idnm").innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    } else {
+                                        document.getElementById("idnm").innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    }
+                                }
+                            </script>
+                        </dd>
+                        <dd class=leg2>(1.不可空白，2.至少兩個字以上，3.必須全部為中文字)</dd>
+                        <hr>
+                        <dd>
+                            <label class="leg1">密碼:</label>
+                            <input type="password" id="idPwd" size="20" placeholder="請輸入密碼" onblur="checkPwd()">
+                            <span id="idsp"></span><br />
+                            <script>
+                                function checkPwd() {
+                                    let thePwdObj = document.getElementById("idPwd")
+                                    let thePwdObjVal = thePwdObj.value;
+                                    let thePwdObjValLen = thePwdObjVal.length;
+                                    let flag1 = false, flag2 = false, flag3 = false;
+                                    if (thePwdObjVal == '')
+                                        document.getElementById('idsp').innerHTML = "<img src='no.jpg'>" + "<font color='red'>不能空白</font>"
+                                    else if (thePwdObjValLen >= 6) {
+                                        document.getElementById('idsp').innerHTML = "<img src='yes.jpg'>" + "<font color='#BBFFBB'>正確</font>"
+                                        for (let i = 0; i < thePwdObjValLen; i++) {
+                                            let ch = thePwdObjVal.charAt(i).toUpperCase();
+                                            if (ch >= "A" && ch <= "Z")
+                                                flag1 = true;
+                                            else if (ch >= "0" && ch <= 9)
+                                                flag2 = true
+                                            if (flag1 && flag2) break
+                                        }
+                                        if (flag1 && flag2)
+                                            document.getElementById('idsp').innerHTML = "<img src='yes.jpg'>" + "<font color='#BBFFBB'>正確</font>"
+                                        else
+                                            document.getElementById('idsp').innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    } else {
+                                        document.getElementById('idsp').innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    }
+                                }
+                            </script>
+                        </dd>
+                        <dd class=leg2>(1.不可空白，2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</dd>
+                        <hr>
+
+                        <dd>
+                            <label class="leg1">日期:</label>
+                            <input type="text" id="iddate" placeholder="ex.2020/02/29" onblur="checkDate()">
+                            <span id="iddt"></span><br />
+                            <script>
+                                function checkDate() {
+                                    let theDateObj = document.getElementById("iddate");
+                                    let theDateObjVal = theDateObj.value;
+                                    let theDateObjValLen = theDateObjVal.length;
+                                    let date = new Date(theDateObjVal);
+                                    if (theDateObjVal == ''){
+                                        document.getElementById("iddt").innerHTML = "<img src='no.jpg'>" + "<font color='red'>不能空白</font>"
+                                    }
+                                    else if (theDateObjValLen != 10){
+                                        document.getElementById("iddt").innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    }else {
+
+                                        if (theDateObjVal.substr(8) == date.getDate())
+                                            document.getElementById("iddt").innerHTML = "<img src='yes.jpg'>" + "<font color='#BBFFBB'>正確</font>"
+                                        else
+                                            document.getElementById("iddt").innerHTML = "<img src='no.jpg'>" + "<font color='red'>格式錯誤</font>"
+                                    }
+                                }
+                            </script>
+                        </dd>
+                        <dd class=leg2>(格式:西元年/月/日 yyyy/MM/dd)</dd>
+                        <hr>
+
+                        <dd class="cen1">
+                            <input type="submit" value="送出">
+                            <input type="reset" name="" value="清除">
+                        </dd>
+                    </dl>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
